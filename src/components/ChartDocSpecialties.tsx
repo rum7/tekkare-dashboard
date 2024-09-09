@@ -108,7 +108,7 @@ export const ChartDocSpecialties = () => {
         <Card className="flex flex-col">
             <CardHeader className="items-center pb-0">
                 <CardTitle>Doctor specialities</CardTitle>
-                <CardDescription className="text-center">Showing number of doctor and satisfaction rate according to specialties</CardDescription>
+                <CardDescription className="text-center">Doctors and satisfaction rate according to specialties</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 items-center pb-0 content-center">
                 <ChartContainer

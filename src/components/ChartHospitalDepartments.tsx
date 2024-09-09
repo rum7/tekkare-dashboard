@@ -49,7 +49,7 @@ export const ChartHospitalDepartments = () => {
         <Card className="flex flex-col">
             <CardHeader>
                 <CardTitle>Hospital departments</CardTitle>
-                <CardDescription>Showing patients per day and average wait time based on department</CardDescription>
+                <CardDescription>Patients per day and average wait time results based on department</CardDescription>
             </CardHeader>
             <CardContent className="flex-1">
                 <ChartContainer config={chartConfig} className="h-full w-full">

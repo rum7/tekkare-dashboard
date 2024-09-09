@@ -79,12 +79,10 @@ export const ChartHospitalization = () => {
     return (
         <Card className="flex flex-col">
             <CardHeader>
-                <div className="flex items-center justify-between">
+                <div className="flex items-start justify-between">
                     <div className="flex flex-col gap-1">
                         <CardTitle>Monthly hospitalization</CardTitle>
-                        <CardDescription>
-                            Showing total patients hospitalized per month in {selectedYear}
-                        </CardDescription>
+                        <CardDescription>Patients per month in {selectedYear}</CardDescription>
                     </div>
                     <Select
                         value={selectedYear}
