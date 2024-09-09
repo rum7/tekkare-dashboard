@@ -2,6 +2,7 @@ import './App.css'
 import { DashboardHeader } from './components/DashboardHeader'
 import { CardOverview } from './components/CardOverview'
 import { ChartHospitalization } from './components/ChartHospitalization'
+import { ChartDocSpecialties } from './components/ChartDocSpecialties'
 
 function App() {
 
@@ -17,8 +18,9 @@ function App() {
             <CardOverview label='numberOfNurses' value='300' iconType='clipboard' />
         </div>
 
-        <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-2'>
+        <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
             <ChartHospitalization />
+            <ChartDocSpecialties />
         </div>
         
         <div className="fixed left-0 top-0 -z-10 h-full w-full">

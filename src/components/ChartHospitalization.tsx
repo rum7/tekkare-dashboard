@@ -65,7 +65,7 @@ const chartConfig = {
 const getMonthFromAbbreviation = (abbreviation: string) => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     const monthAbbreviation = abbreviation.toLowerCase()
-    const fullMonth = months.find(month => month.toLowerCase().startsWith(monthAbbreviation));
+    const fullMonth = months.find(month => month.toLowerCase().startsWith(monthAbbreviation))
 
     return fullMonth || "Invalid abbreviation"
 }
@@ -76,7 +76,7 @@ export const ChartHospitalization = () => {
     const totalPatients: number = filteredData.reduce((acc, patients) => acc + patients.value, 0)
 
     return (
-        <Card>
+        <Card className="flex flex-col">
             <CardHeader>
                 <div className="flex items-center justify-between">
                     <div className="flex flex-col gap-1">
@@ -99,27 +99,27 @@ export const ChartHospitalization = () => {
                     </Select>
                 </div>
             </CardHeader>
-            <CardContent>
-                <ChartContainer config={chartConfig}>
-                    <BarChart
-                        accessibilityLayer
-                        data={filteredData}
-                        margin={{
-                            top: 20,
-                        }}
-                    >
-                        <CartesianGrid vertical={false} />
-                        <XAxis
-                            dataKey="month"
-                            tickLine={false}
-                            tickMargin={10}
-                            axisLine={false}
-                            tickFormatter={(value) => value.slice(0, 3)}
-                        />
-                        <YAxis domain={[1000, 3250]} hide />
-                        <ChartTooltip content={<ChartTooltipContent nameKey="value" indicator="line" />} />
-                        <Bar dataKey="value" fill="var(--color-value)" radius={6} />
-                    </BarChart>
+            <CardContent className="flex-1">
+                <ChartContainer config={chartConfig} className="h-full w-full">
+                        <BarChart                            
+                            accessibilityLayer
+                            data={filteredData}
+                            margin={{
+                                top: 20,
+                            }}                        
+                        >
+                            <CartesianGrid vertical={false} />
+                            <XAxis
+                                dataKey="month"
+                                tickLine={false}
+                                tickMargin={10}
+                                axisLine={false}
+                                tickFormatter={(value) => value.slice(0, 3)}
+                            />
+                            <YAxis domain={[1000, 3250]} hide />
+                            <ChartTooltip content={<ChartTooltipContent nameKey="value" indicator="line" />} />
+                            <Bar dataKey="value" fill="var(--color-value)" radius={6} />
+                        </BarChart>
                 </ChartContainer>
             </CardContent>
             <CardFooter className="flex-col items-start gap-2 text-sm">
