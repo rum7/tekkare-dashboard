@@ -1,3 +1,5 @@
+import { useState } from "react"
+import { CalendarDays, Users } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
 import {
@@ -24,7 +26,6 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-import { useState } from "react"
 
 type MonthlyDataType = {
     month: string;
@@ -122,12 +123,14 @@ export const ChartHospitalization = () => {
                         </BarChart>
                 </ChartContainer>
             </CardContent>
-            <CardFooter className="flex-col items-start gap-2 text-sm">
-                <div className="flex gap-2 font-medium leading-none">
-                    {totalPatients} patients hospitalized
+            <CardFooter className="flex-col gap-2 px-5 sm:px-6 text-sm text-muted-foreground">
+                <div className="w-full flex gap-2 items-center">
+                    <Users className="h-4 w-4" />
+                    <p><span className="font-semibold">{totalPatients}</span> patients hospitalized</p>
                 </div>
-                <div className="leading-none text-muted-foreground">
-                    {getMonthFromAbbreviation(filteredData[0].month)} - {getMonthFromAbbreviation(filteredData[filteredData.length-1].month)} {selectedYear}
+                <div className="w-full flex gap-2 items-center">
+                    <CalendarDays className="h-4 w-4" />
+                    <p>{getMonthFromAbbreviation(filteredData[0].month)} - {getMonthFromAbbreviation(filteredData[filteredData.length-1].month)} {selectedYear}</p>
                 </div>
             </CardFooter>
         </Card>

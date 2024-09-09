@@ -1,9 +1,5 @@
-import { ChevronRight, TrendingUp } from "lucide-react"
+import { Heart, Stethoscope } from "lucide-react"
 import { Label, Pie, PieChart } from "recharts"
-import {
-    Heart,
-    Stethoscope,
-} from "lucide-react"
 
 import {
     Card,
@@ -19,9 +15,6 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/ui/chart"
-import { useMemo } from "react"
-
-export const description = "A donut chart with text"
 
 type DoctorSpecialtyType = {
     specialty: string;
@@ -101,21 +94,15 @@ const CustomTooltip: React.FC<{ active?: boolean; payload?: any[] }> = ({ active
 }
 
 export const ChartDocSpecialties = () => {
-    const totalDoctors = useMemo(() => {
-        return chartData.reduce((acc, curr) => acc + curr.numberOfDoctors, 0)
-    }, [])
+    const totalDoctors = chartData.reduce((acc, curr) => acc + curr.numberOfDoctors, 0)
 
-    const maxNumDoctors = useMemo(() => {
-        return chartData.reduce((acc: DoctorSpecialtyType, curr: DoctorSpecialtyType) => {
-            return acc.numberOfDoctors > curr.numberOfDoctors ? acc : curr
-        }, chartData[0])
-    }, [])
+    const maxNumDoctors = chartData.reduce((acc, curr) => {
+        return acc.numberOfDoctors > curr.numberOfDoctors ? acc : curr
+    }, chartData[0])
 
-    const bestSatisfactionRate = useMemo(() => {
-        return chartData.reduce((acc: DoctorSpecialtyType, curr: DoctorSpecialtyType) => {
-            return acc.satisfactionRate > curr.satisfactionRate ? acc : curr
-        }, chartData[0])
-    }, [])
+    const bestSatisfactionRate = chartData.reduce((acc, curr) => {
+        return acc.satisfactionRate > curr.satisfactionRate ? acc : curr
+    }, chartData[0])
 
     return (
         <Card className="flex flex-col">
