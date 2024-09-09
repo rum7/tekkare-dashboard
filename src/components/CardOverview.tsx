@@ -36,7 +36,7 @@ const handleIconCard = (iconType: string) => {
     }
 }
     
-const CardOverview = ({label, value, iconType}: CardOverviewProps) => {
+export const CardOverview = ({label, value, iconType}: CardOverviewProps) => {
     return (
         <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -50,5 +50,3 @@ const CardOverview = ({label, value, iconType}: CardOverviewProps) => {
         </Card>
     )
 }
-  
-export default CardOverview
