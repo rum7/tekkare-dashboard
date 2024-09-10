@@ -8,47 +8,11 @@ import {
   
 import { columns } from "./columns"
 import { DataTable } from "./datatable"
+import { DataTableCTProps } from "@/typescript/typescript"
 
-async function getData() {
-    // Fetch data from your API here.
-    return [
-        {
-            name: "Trial 1",
-            status: "En cours",
-            startDate: "2023-01-01",
-            endDate: "2025-06-30",
-            totalPatients: 234
-        },
-        {
-            name: "Trial 2",
-            status: "Terminé",
-            startDate: "2023-01-01",
-            endDate: "2023-06-30",
-            totalPatients: 349
-        },
-        {
-            name: "Trial 3",
-            status: "Terminé",
-            startDate: "2023-01-01",
-            endDate: "2023-06-30",
-            totalPatients: 1289
-        },
-        {
-            name: "Trial 4",
-            status: "En cours",
-            startDate: "2023-01-01",
-            endDate: "2024-12-30",
-            totalPatients: 978
-        }
-    ]
-    // return Data
-}
-
-const data = await getData()
-
-export const DataTableCT = () => {
+export const DataTableCT = ({ data }: DataTableCTProps) => {
     return (
-        <Card>
+        <Card className="shadow-none">
             <CardHeader className="flex flex-col items-start">
                 <CardTitle>Clinical trials</CardTitle>
                 <CardDescription>List of every trial currently pending or already finished</CardDescription>

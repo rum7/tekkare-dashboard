@@ -13,22 +13,17 @@ import {
     ChartConfig,
     ChartContainer,
     ChartTooltip,
-    ChartTooltipContent,
 } from "@/components/ui/chart"
+import { ChartDocSpecialtiesProps, DoctorSpecialtyType } from "@/typescript/typescript"
 
-type DoctorSpecialtyType = {
-    specialty: string;
-    numberOfDoctors: number;
-    satisfactionRate: string;
-    fill: string;
-}
 
-const chartData: DoctorSpecialtyType[] = [
-    { specialty: "Cardiologie", numberOfDoctors: 120, satisfactionRate: "89%", fill: "var(--color-cardiologie)"},
-    { specialty: "Neurologie", numberOfDoctors: 80, satisfactionRate: "80%", fill: "var(--color-neurologie)"},
-    { specialty: "Oncologie", numberOfDoctors: 60, satisfactionRate: "70%", fill: "var(--color-oncologie)"},
-    { specialty: "Pédiatrie", numberOfDoctors: 90, satisfactionRate: "60%", fill: "var(--color-pediatrie)"},
-    { specialty: "Médecine Générale", numberOfDoctors: 150, satisfactionRate: "90%", fill: "var(--color-medecineGenerale)"},
+
+const fillColors = [
+    "var(--color-cardiologie)",
+    "var(--color-neurologie)",
+    "var(--color-oncologie)",
+    "var(--color-pediatrie)",
+    "var(--color-medecineGenerale)"
 ]
 
 const chartConfig = {
@@ -93,9 +88,13 @@ const CustomTooltip: React.FC<{ active?: boolean; payload?: any[] }> = ({ active
     return null
 }
 
-export const ChartDocSpecialties = () => {
-    const totalDoctors = chartData.reduce((acc, curr) => acc + curr.numberOfDoctors, 0)
+export const ChartDocSpecialties = ({ data }: ChartDocSpecialtiesProps) => {
+    const chartData = data
+    chartData.map((data, index) => {
+        data.fill = fillColors[index]
+    })
 
+    const totalDoctors = chartData.reduce((acc, curr) => acc + curr.numberOfDoctors, 0)
     const maxNumDoctors = chartData.reduce((acc, curr) => {
         return acc.numberOfDoctors > curr.numberOfDoctors ? acc : curr
     }, chartData[0])
@@ -105,7 +104,7 @@ export const ChartDocSpecialties = () => {
     }, chartData[0])
 
     return (
-        <Card className="flex flex-col">
+        <Card className="flex flex-col shadow-none">
             <CardHeader className="items-center pb-0">
                 <CardTitle>Doctor specialities</CardTitle>
                 <CardDescription className="text-center">Doctors and satisfaction rate according to specialties</CardDescription>

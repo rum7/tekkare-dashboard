@@ -1,14 +1,7 @@
 import { CaretSortIcon } from "@radix-ui/react-icons"
 import { Button } from "../ui/button"
 import { ColumnDef } from "@tanstack/react-table"
-
-type ClinicalTrialsType = {
-    name: string
-    status: string
-    startDate: string
-    endDate: string
-    totalPatients: number
-}
+import { ClinicalTrialsType } from "@/typescript/typescript"
 
 export const columns: ColumnDef<ClinicalTrialsType>[] = [
     {

@@ -5,7 +5,7 @@ import {
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
     DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu"
 
 import { 
     ColumnDef,
@@ -49,7 +49,7 @@ export function DataTable<TData, TValue> ({ columns, data }: DataTableProps<TDat
         initialState: {
             pagination: {
                 pageIndex: 0,
-                pageSize: 10,
+                pageSize: 5,
             },
         },
         state: {

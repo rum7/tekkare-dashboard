@@ -15,38 +15,31 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-
-type HospitalDepartmentDataType = {
-    department: string;
-    patientsPerDay: number;
-    averageWaitTime: number;
-}
-
-const chartData: HospitalDepartmentDataType[] = [
-    { department: "Urgences", patientsPerDay: 150, averageWaitTime: 45 },
-    { department: "Cardiologie", patientsPerDay: 80, averageWaitTime: 30 },
-    { department: "Neurologie", patientsPerDay: 60, averageWaitTime: 35 },
-]
+import { HospitalDepartmentDataTypeProps } from "@/typescript/typescript"
 
 const chartConfig = {
     patientsPerDay: {
         label: "patients/day",
         color: "hsl(var(--chart-3))",
     },
-    averageWaitTime: {
+    averageWaitTimeNum: {
         label: "wait time(mn)",
         color: "hsl(var(--chart-1))",
     },
 } satisfies ChartConfig
 
-export const ChartHospitalDepartments = () => {
+export const ChartHospitalDepartments = ({ data }: HospitalDepartmentDataTypeProps) => {
+    const chartData = data
+    chartData.map(data => data.averageWaitTimeNum = Number(data.averageWaitTime.substring(0, 2)))
+
     const totalPatients: number = chartData.reduce((acc, patients) => acc + patients.patientsPerDay, 0)
+
     const maxAverageWaitTime = chartData.reduce((acc, curr) => {
-            return acc.averageWaitTime > curr.averageWaitTime ? acc : curr
+            return Number(acc.averageWaitTime.substring(0, 2)) > Number(curr.averageWaitTime.substring(0, 2)) ? acc : curr
     }, chartData[0])
 
     return (
-        <Card className="flex flex-col">
+        <Card className="flex flex-col shadow-none">
             <CardHeader>
                 <CardTitle>Hospital departments</CardTitle>
                 <CardDescription>Patients per day and average wait time results based on department</CardDescription>
@@ -67,7 +60,7 @@ export const ChartHospitalDepartments = () => {
                         content={<ChartTooltipContent indicator="line" />}
                         />
                         <Bar dataKey="patientsPerDay" fill="var(--color-patientsPerDay)" radius={4} barSize={25} />
-                        <Bar dataKey="averageWaitTime" fill="var(--color-averageWaitTime)" radius={4} barSize={25} />
+                        <Bar dataKey="averageWaitTimeNum" fill="var(--color-averageWaitTimeNum)" radius={4} barSize={25} />
                     </BarChart>
                 </ChartContainer>
             </CardContent>
@@ -78,7 +71,7 @@ export const ChartHospitalDepartments = () => {
                 </div>
                 <div className="w-full flex gap-2 items-center">
                     <Clock className="h-4 w-4" />
-                    <p>Average wait time / <span className="font-semibold">{maxAverageWaitTime.averageWaitTime} min</span></p>
+                    <p>Average wait time / <span className="font-semibold">{maxAverageWaitTime.averageWaitTime}</span></p>
                 </div>
             </CardFooter>
         </Card>

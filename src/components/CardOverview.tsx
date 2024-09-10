@@ -4,6 +4,7 @@ import {
     CardTitle,
     CardContent,
 } from "@/components/ui/card"
+import { CardOverviewProps } from "@/typescript/typescript"
 
 import {
     ClipboardPlus,
@@ -13,23 +14,17 @@ import {
     Users,
 } from "lucide-react"
 
-type CardOverviewProps = {
-    label: string;
-    value: string;
-    iconType: string;
-}
-
 const handleIconCard = (iconType: string) => {
     switch (iconType) {
-        case 'clipboard':
+        case 'numberOfNurses':
             return <ClipboardPlus className="h-4 w-4 text-muted-foreground" />
-        case 'heart':
+        case 'satisfactionRate':
             return <Heart className="h-4 w-4 text-muted-foreground" />
-        case 'stethoscope':
+        case 'numberOfDoctors':
             return <Stethoscope className="h-4 w-4 text-muted-foreground" />
-        case 'pill':
+        case 'totalTreatments':
             return <Pill className="h-4 w-4 text-muted-foreground" />
-        case 'users':
+        case 'totalPatients':
             return <Users className="h-4 w-4 text-muted-foreground" />
         default:
             return null
@@ -38,14 +33,14 @@ const handleIconCard = (iconType: string) => {
     
 export const CardOverview = ({label, value, iconType}: CardOverviewProps) => {
     return (
-        <Card>
+        <Card className="shadow-none">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">{label}</CardTitle>
-                {handleIconCard(iconType)}
+                {iconType && handleIconCard(iconType)}
             </CardHeader>
             <CardContent>
                 <div className="text-4xl font-bold">{value}</div>
-                <p className="text-xs text-muted-foreground">+11.2% from last month</p>
+                {/* <p className="text-xs text-muted-foreground">+11.2% from last month</p> */}
             </CardContent>
         </Card>
     )
