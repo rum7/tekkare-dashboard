@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { CalendarDays, Users } from "lucide-react"
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
+import { Area, AreaChart, XAxis, YAxis } from "recharts"
 
 import {
   Card,
