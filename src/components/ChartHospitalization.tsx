@@ -44,7 +44,8 @@ const getMonthFromAbbreviation = (abbreviation: string) => {
 
 export const ChartHospitalization = ({data}: ChartHospitalizationProps) => {
     const chartData = data
-    const [selectedYear, setSelectedYear] = useState(String(new Date().getFullYear()))
+    // const [selectedYear, setSelectedYear] = useState(String(new Date().getFullYear())) >> getting error because there is no data for 2025
+    const [selectedYear, setSelectedYear] = useState<string>("2023")
     const filteredData: MonthlyDataType[] = chartData.filter((item) => item.year === Number(selectedYear))
     const totalPatients: number = filteredData.reduce((acc, patients) => acc + patients.value, 0)
 
